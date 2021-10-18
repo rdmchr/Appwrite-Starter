@@ -1,11 +1,27 @@
-## Folder structure
+## Getting up and running
+Use these commands to start the CLI locally. From there you should be able to figure the project out using the guides bellow.
+```bash
+git clone git@github.com:[YOUR_FORK_HERE]/Appwrite-Starter.git
+
+cd Appwrite-Starter
+
+npm install
+
+npm run start
 ```
-.
- |- src [contains the code for the cli]
- |- templates [contain the templates]
+
+## Folder structure
+```bash
+ .
+ ├─ src # contains the code for the cli
+ └─ templates # contain the templates
+    ├─ vuejs # the Vue.JS template files
+    ├─ vanilla # the Vanilla template files
 ```
 
 ## Moustaches
 Currently, these moustaches/placeholders will be replaced in the templates.
 - **projectName** The name of the project
 - **author** The name of the author
+- **appwriteEndpoint** The URL of the users Appwrite endpoint
+- **appwriteProject** The id of the users Appwrite project
