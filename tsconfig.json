@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "es2018",
+    "declaration": true,
+    "strict": true,
+    "outDir": "bin"
+  },
+  "lib": ["es2015"],
+  "files": [
+    "src/cli.ts",
+  ]
+}
