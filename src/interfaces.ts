@@ -7,6 +7,8 @@ interface Inquiry extends Question {
 interface moustacheData {
     projectName: string,
     author: string,
+    appwriteEndpoint: string,
+    appwriteProject: string
 }
 
 export {

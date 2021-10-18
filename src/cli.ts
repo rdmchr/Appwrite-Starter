@@ -47,7 +47,9 @@ async function run() {
     const templateDir = resolve(templateRoot, framework);
     const moustacheData: moustacheData = {
         projectName: name,
-        author: gitUsername() ? gitUsername() as string : "no-git-user-found"
+        author: gitUsername() ? gitUsername() as string : "no-git-user-found",
+        appwriteEndpoint: endpoint,
+        appwriteProject: project
     }
 
     // check if selected directory is empty
