@@ -23,6 +23,8 @@ npm run start
 
 ## Moustaches
 Currently, these moustaches/placeholders will be replaced in the templates.
+Quick Tip: Escape unwanted moustaches with a `\ ` like `\{{counter}}`
+
 - **projectName** The name of the project
 - **author** The name of the author
 - **appwriteEndpoint** The URL of the users Appwrite endpoint
