@@ -14,9 +14,11 @@ npm run start
 ```bash
  .
  ├─ src # contains the code for the cli
- └─ templates # contain the templates
+ └─ templates # contains the addons
     ├─ vuejs # the Vue.JS template files
-    ├─ vanilla # the Vanilla template files
+    │  ├─ batteriesincluded # the batteries-included template
+    │  └─ basic # the basic setup
+    └─ vanilla # the Vanilla template files
 ```
 
 ## Moustaches

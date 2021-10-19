@@ -24,6 +24,15 @@ async function run() {
             },
         },
         {
+            type: 'list',
+            name: 'setup',
+            message: 'Do you want a basic or batteries-included template',
+            choices: ['Basic', 'Batteries-included'],
+            filter(val) {
+                return val.toLowerCase().replace('-', '');
+            },
+        },
+        {
             type: 'input',
             name: 'endpoint',
             message: 'Appwrite endpoint?',
@@ -36,7 +45,7 @@ async function run() {
     ];
 
     // walk user through questions
-    const {name, framework, endpoint, project} = await inquirer.prompt(inquiries).then((answers) => {
+    const {name, framework, endpoint, project, setup} = await inquirer.prompt(inquiries).then((answers) => {
         console.log(JSON.stringify(answers, null, '   '));
         return answers
     });
@@ -44,7 +53,7 @@ async function run() {
     const templateRoot = resolve(__dirname, '..', 'templates')
 
     const projectDir = `./${name}`;
-    const templateDir = resolve(templateRoot, framework);
+    const templateDir = resolve(templateRoot, framework, setup);
     const moustacheData: moustacheData = {
         projectName: name,
         author: gitUsername() ? gitUsername() as string : "no-git-user-found",

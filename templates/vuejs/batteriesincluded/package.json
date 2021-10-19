@@ -1,7 +1,6 @@
 {
-  "name": "{{projectName}}",
+  "name": "batteriesincluded",
   "version": "0.0.0",
-  "author": "{{author}}",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
