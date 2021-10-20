@@ -48,7 +48,6 @@ async function run() {
 
     // walk user through questions
     const {name, framework, endpoint, project, setup} = await inquirer.prompt(inquiries).then((answers) => {
-        console.log(JSON.stringify(answers, null, '   '));
         return answers
     });
 
