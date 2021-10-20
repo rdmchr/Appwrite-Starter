@@ -1,6 +1,6 @@
 {
-  "name": "appwrite-starter",
-  "version": "0.1.0",
+  "name": "create-appwrite",
+  "version": "0.1.1",
   "description": "A simple starter for web applications that use Appwrite",
   "bin": "bin/cli.js",
   "scripts": {
