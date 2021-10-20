@@ -1,30 +1,37 @@
 <!-- 'Made with Appwrite' badge -->
-<a href="https://appwrite.io/" target="_blank" style="position: fixed;right: 18px;bottom: 18px;z-index: 999;">
-  <img style="width: 160px;" src="https://appwrite.io/images-ee/press/badge-pink-button.svg" alt="Built with Appwrite">
+<a href="https://appwrite.io/" target="_blank">
+  <img style="height:40px;width:auto" src="https://appwrite.io/images-ee/press/badge-pink-button.svg" alt="Built with Appwrite">
 </a>
 
+![GitHub](https://img.shields.io/github/license/rdmchr/Appwrite-Starter?color=%230E7FBF)
+![npm](https://img.shields.io/npm/v/create-appwrite?color=%230E7FBF)
+[![Build](https://github.com/rdmchr/Appwrite-Starter/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/rdmchr/Appwrite-Starter/actions/workflows/build.yml)
+
 # 🚀 Appwrite-Starter
-This initializer allows you to start creating projects with Appwrite faster.
+This initializer allows you to start creating projects with [Appwrite](https://appwrite.io/) faster.
+The aim of this project is to provide templates, that already contain a working Appwrite setup.
 
+## Get started
+To get started just run the follwowing command and follow the prompts.
+```bash
+npm init appwrite@latest
+```
+After that you just have to install the dependencies using
+````bash
+npm install
+````
+And finally to start the development server use
+````bash
+npm run dev
+````
 
-My current plan is to create a Vue.JS project that already has Appwrite and some additional stuff like Tailwind setup. I think utilising Vite.JS would allow for a better development experience and the option to extend this intializer to other frameworks at a later time, so I'll probably use that.
+## Templates
+Each framework is offered in a bare bones and batteries-included setup.
+- Vue.JS
+- Vanilla JS
 
-## The idea
-1. User starts the initializer with the command `npm init appwrite-starter`
-2. The user will be able to select optional dependencies (feel free to suggest some by creating an issue)
-3. The user enters their Appwrite credentials
-4. The script creates the project and writes the users credentials into a .env file
-5. Now the user only has to `cd` into the folder and run `npm install`
-6. At this point the project should be set up so that the user can instantly start creating components etc. without having to wory about setting up Appwrite or any of the selected dependencies
+Not seeing your favorite framework? Add it to the [repo](https://github.com/rdmchr/Appwrite-Starter) now!
 
-
-## Optional dependencies
-These are the dependencies that I believe would be a great starting point
-
-- Tailwind/WindiCSS
-- Pinia (I find this more intuitive than Vuex, but I could probably offer both)
-- TypeScript
-- VueRouter
-- unplugin-icons
-
-## Feel free to open an issue if you have a feature request.
+## Technologies used
+Each template is build upon [ViteJS](https://vitejs.dev/) to provide fast hot reloads and other nice to have features.
+They also each include Appwrite of course, but other than that each framework has a different template using different dependencies.
