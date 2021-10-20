@@ -1,0 +1,8 @@
+**/node_modules
+templates/**/pnpm-lock.yaml
+src/
+/.github
+/.git
+CONTRIBUTING.md
+tsconfig.json
+pnpm-lock.yaml
