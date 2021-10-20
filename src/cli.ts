@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import {cyan, green} from 'chalk';
 import inquirer from 'inquirer';
 import {Inquiry, moustacheData} from './interfaces';
