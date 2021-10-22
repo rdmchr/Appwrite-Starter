@@ -2,7 +2,7 @@ name: Build
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Prettier"]
+    workflows: ["prettier"]
     types:
       - completed
 
