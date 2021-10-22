@@ -1,6 +1,6 @@
-import { appwrite } from './appwrite';
-import { AppwriteError } from './appwriteInterfaces';
-import { AppwriteExecution, AppwriteExecutionList } from './functionsInterfaces';
+import {appwrite} from './appwrite';
+import {AppwriteError} from './appwriteInterfaces';
+import {AppwriteExecution, AppwriteExecutionList} from './functionsInterfaces';
 
 const func = appwrite.functions;
 
@@ -11,12 +11,18 @@ const func = appwrite.functions;
  * @returns [{@link AppwriteExecution}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/functions#functionsCreateExecution
  */
-async function createExecution(functionId: string, data?: string): Promise<[AppwriteExecution, AppwriteError]> {
-    return await func.createExecution(functionId, data).then((exec: AppwriteExecution) => {
-        return [exec, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function createExecution(
+  functionId: string,
+  data?: string
+): Promise<[AppwriteExecution, AppwriteError]> {
+  return await func.createExecution(functionId, data).then(
+    (exec: AppwriteExecution) => {
+      return [exec, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -29,12 +35,23 @@ async function createExecution(functionId: string, data?: string): Promise<[Appw
  * @returns [{@link AppwriteExecutionList}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/functions#functionsListExecutions
  */
-async function listExecutions(functionId: string, search?: string, limit?: number, offset?: number, orderType?: 'ASC' | 'DESC'): Promise<[AppwriteExecutionList, AppwriteError]> {
-    return await func.listExecutions(functionId, search, limit, offset, orderType).then((execs: AppwriteExecutionList) => {
+async function listExecutions(
+  functionId: string,
+  search?: string,
+  limit?: number,
+  offset?: number,
+  orderType?: 'ASC' | 'DESC'
+): Promise<[AppwriteExecutionList, AppwriteError]> {
+  return await func
+    .listExecutions(functionId, search, limit, offset, orderType)
+    .then(
+      (execs: AppwriteExecutionList) => {
         return [execs, null];
-    }, (err: AppwriteError) => {
+      },
+      (err: AppwriteError) => {
         return [null, err];
-    });
+      }
+    );
 }
 
 /**
@@ -44,16 +61,18 @@ async function listExecutions(functionId: string, search?: string, limit?: numbe
  * @returns [{@link AppwriteExecution}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/functions#functionsGetExecution
  */
-async function getExecution(functionId: string, executionId: string): Promise<[AppwriteExecution, AppwriteError]> {
-    return await func.getExecution(functionId, executionId).then((exec: AppwriteExecution) => {
-        return [exec, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function getExecution(
+  functionId: string,
+  executionId: string
+): Promise<[AppwriteExecution, AppwriteError]> {
+  return await func.getExecution(functionId, executionId).then(
+    (exec: AppwriteExecution) => {
+      return [exec, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
-export {
-    createExecution,
-    listExecutions,
-    getExecution
-}
+export {createExecution, listExecutions, getExecution};

@@ -2,17 +2,14 @@
  * @see https://appwrite.io/docs/models/document
  */
 interface AppwriteDocument {
-    $id: string;
-    $collection: string;
-    $permissions: string[];
+  $id: string;
+  $collection: string;
+  $permissions: string[];
 }
 
 interface AppwriteDocumentList {
-    sum: number;
-    documents: AppwriteDocument[];
+  sum: number;
+  documents: AppwriteDocument[];
 }
 
-export {
-    AppwriteDocument,
-    AppwriteDocumentList
-}
+export {AppwriteDocument, AppwriteDocumentList};

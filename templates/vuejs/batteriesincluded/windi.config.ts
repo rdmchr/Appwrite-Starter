@@ -1,7 +1,7 @@
-import { defineConfig } from 'windicss/helpers'
+import {defineConfig} from 'windicss/helpers';
 export default defineConfig({
-    darkMode: 'class',
-    theme: {
-        extend: {},
-    },
-})
+  darkMode: 'class',
+  theme: {
+    extend: {},
+  },
+});

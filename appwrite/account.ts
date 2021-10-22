@@ -1,6 +1,14 @@
-import { appwrite } from './appwrite';
-import { AppwriteUser, AppwriteSession, AppwriteSessionList, AppwriteToken, AppwriteLogsList, AppwriteJWT, OAuth2Provider } from './accountInterfaces';
-import { AppwriteError } from './appwriteInterfaces';
+import {appwrite} from './appwrite';
+import {
+  AppwriteUser,
+  AppwriteSession,
+  AppwriteSessionList,
+  AppwriteToken,
+  AppwriteLogsList,
+  AppwriteJWT,
+  OAuth2Provider,
+} from './accountInterfaces';
+import {AppwriteError} from './appwriteInterfaces';
 
 const auth = appwrite.account;
 
@@ -12,12 +20,19 @@ const auth = appwrite.account;
  * @returns [{@link AppwriteUser}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account?sdk=web-default#accountCreate
  */
-async function createAccount(email:string, password: string, name?: string): Promise<[AppwriteUser, AppwriteError]> {
-    return await auth.create(email, password, name).then((user: AppwriteUser) => {
-        return [user, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function createAccount(
+  email: string,
+  password: string,
+  name?: string
+): Promise<[AppwriteUser, AppwriteError]> {
+  return await auth.create(email, password, name).then(
+    (user: AppwriteUser) => {
+      return [user, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -27,12 +42,18 @@ async function createAccount(email:string, password: string, name?: string): Pro
  * @returns [{@link AppwriteSession}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account?sdk=web-default#accountCreateSession
  */
-async function createSession(email:string, password:string): Promise<[AppwriteSession, AppwriteError]> {
-    return await auth.createSession(email, password).then((session: AppwriteSession) => {
-        return [session, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function createSession(
+  email: string,
+  password: string
+): Promise<[AppwriteSession, AppwriteError]> {
+  return await auth.createSession(email, password).then(
+    (session: AppwriteSession) => {
+      return [session, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -46,8 +67,17 @@ If there is already an active session, the new session will be attached to the l
  * @returns Can return {@link AppwriteError}
  * @see https://appwrite.io/docs/client/account?sdk=web-default#accountCreateOAuth2Session
  */
-async function createOAuthSession(provider: OAuth2Provider, success?: string, failure?: string, scopes?: string[]): Promise<AppwriteError> {
-    return await auth.createOAuth2Session(provider, success, failure, scopes).catch((err: AppwriteError) => {return err});
+async function createOAuthSession(
+  provider: OAuth2Provider,
+  success?: string,
+  failure?: string,
+  scopes?: string[]
+): Promise<AppwriteError> {
+  return await auth
+    .createOAuth2Session(provider, success, failure, scopes)
+    .catch((err: AppwriteError) => {
+      return err;
+    });
 }
 
 /**
@@ -57,12 +87,18 @@ async function createOAuthSession(provider: OAuth2Provider, success?: string, fa
  * @returns [{@link AppwriteToken}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountCreateMagicURLSession
  */
-async function createMagicURLSession(email: string, url?: string): Promise<[AppwriteToken, AppwriteError]> {
-    return await auth.createMagicURLSession(email, url).then((token: AppwriteToken) => {
-        return [token, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function createMagicURLSession(
+  email: string,
+  url?: string
+): Promise<[AppwriteToken, AppwriteError]> {
+  return await auth.createMagicURLSession(email, url).then(
+    (token: AppwriteToken) => {
+      return [token, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -74,12 +110,18 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
  * @returns [{@link AppwriteSession}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountUpdateMagicURLSession
  */
-async function updateMagicURLSession(userId: string, secret: string): Promise<[AppwriteSession, AppwriteError]> {
-    return await auth.updateMagicURLSession(userId, secret).then((session: AppwriteSession) => {
-        return [session, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function updateMagicURLSession(
+  userId: string,
+  secret: string
+): Promise<[AppwriteSession, AppwriteError]> {
+  return await auth.updateMagicURLSession(userId, secret).then(
+    (session: AppwriteSession) => {
+      return [session, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -87,12 +129,17 @@ async function updateMagicURLSession(userId: string, secret: string): Promise<[A
  * @returns [{@link AppwriteSession}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountCreateAnonymousSession
  */
-async function createAnonymousSession(): Promise<[AppwriteSession, AppwriteError]> {
-    return await auth.createAnonymousSession().then((session: AppwriteSession) => {
-        return [session, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    })
+async function createAnonymousSession(): Promise<
+  [AppwriteSession, AppwriteError]
+> {
+  return await auth.createAnonymousSession().then(
+    (session: AppwriteSession) => {
+      return [session, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -101,11 +148,14 @@ async function createAnonymousSession(): Promise<[AppwriteSession, AppwriteError
  * @see https://appwrite.io/docs/client/account#accountCreateJWT
  */
 async function createJWT(): Promise<[AppwriteJWT, AppwriteError]> {
-    return await auth.createJWT().then((jwt: AppwriteJWT) => {
-        return [jwt, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    })
+  return await auth.createJWT().then(
+    (jwt: AppwriteJWT) => {
+      return [jwt, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -114,11 +164,14 @@ async function createJWT(): Promise<[AppwriteJWT, AppwriteError]> {
  * @see https://appwrite.io/docs/client/account?sdk=web-default#accountGet
  */
 async function getAccount(): Promise<[AppwriteUser, AppwriteError]> {
-    return await auth.get().then((user: AppwriteUser) => {
-        return [user, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+  return await auth.get().then(
+    (user: AppwriteUser) => {
+      return [user, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -127,11 +180,14 @@ async function getAccount(): Promise<[AppwriteUser, AppwriteError]> {
  * @see https://appwrite.io/docs/client/account#accountGetPrefs
  */
 async function getPrefs(): Promise<[any, AppwriteError]> {
-    return await auth.getPrefs().then((prefs: any) => {
-        return [prefs, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    }); 
+  return await auth.getPrefs().then(
+    (prefs: any) => {
+      return [prefs, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -140,11 +196,14 @@ async function getPrefs(): Promise<[any, AppwriteError]> {
  * @see https://appwrite.io/docs/client/account#accountGetSessions
  */
 async function getSessions(): Promise<[AppwriteSessionList, AppwriteError]> {
-    return await auth.getSessions().then((sessions: AppwriteSession) => {
-        return [sessions, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+  return await auth.getSessions().then(
+    (sessions: AppwriteSession) => {
+      return [sessions, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -153,11 +212,14 @@ async function getSessions(): Promise<[AppwriteSessionList, AppwriteError]> {
  * @see https://appwrite.io/docs/client/account#accountGetLogs
  */
 async function getLogs(): Promise<[AppwriteLogsList, AppwriteError]> {
-    return await auth.getLogs().then((logs: AppwriteLogsList) => {
-        return [logs, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+  return await auth.getLogs().then(
+    (logs: AppwriteLogsList) => {
+      return [logs, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -166,12 +228,17 @@ async function getLogs(): Promise<[AppwriteLogsList, AppwriteError]> {
  * @returns [{@link AppwriteSession}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountGetSession
  */
-async function getSession(sessionId: string | 'current'): Promise<[AppwriteSession, AppwriteError]> {
-    return await auth.getSession(sessionId).then((session: AppwriteSession) => {
-        return [session, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function getSession(
+  sessionId: string | 'current'
+): Promise<[AppwriteSession, AppwriteError]> {
+  return await auth.getSession(sessionId).then(
+    (session: AppwriteSession) => {
+      return [session, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -180,12 +247,17 @@ async function getSession(sessionId: string | 'current'): Promise<[AppwriteSessi
  * @returns [{@link AppwriteUser}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountUpdateName
  */
-async function updateName(name: string): Promise<[AppwriteUser, AppwriteError]> {
-    return await auth.updateName(name).then((user: AppwriteUser) => {
-        return [user, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function updateName(
+  name: string
+): Promise<[AppwriteUser, AppwriteError]> {
+  return await auth.updateName(name).then(
+    (user: AppwriteUser) => {
+      return [user, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -195,12 +267,18 @@ async function updateName(name: string): Promise<[AppwriteUser, AppwriteError]> 
  * @returns [{@link AppwriteUser}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountUpdatePassword
  */
-async function updatePassword(password: string, oldPassword?: string): Promise<[AppwriteUser, AppwriteError]> {
-    return await auth.updatePassword(password, oldPassword).then((user: AppwriteUser) => {
-        return [user, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function updatePassword(
+  password: string,
+  oldPassword?: string
+): Promise<[AppwriteUser, AppwriteError]> {
+  return await auth.updatePassword(password, oldPassword).then(
+    (user: AppwriteUser) => {
+      return [user, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -210,26 +288,35 @@ async function updatePassword(password: string, oldPassword?: string): Promise<[
  * @returns [{@link AppwriteUser}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountUpdateEmail
  */
-async function updateEmail(email: string, password: string): Promise<[AppwriteUser, AppwriteError]> {
-    return await auth.updateEmail(email, password).then((user: AppwriteUser) => {
-        return [user, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function updateEmail(
+  email: string,
+  password: string
+): Promise<[AppwriteUser, AppwriteError]> {
+  return await auth.updateEmail(email, password).then(
+    (user: AppwriteUser) => {
+      return [user, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
  * Update currently logged in user account preferences. You can pass only the specific settings you wish to update.
  * @param prefs Prefs key-value JSON object.
  * @returns [{@link AppwriteUser}, {@link AppwriteError}]
- * @see https://appwrite.io/docs/client/account#accountUpdatePrefs 
+ * @see https://appwrite.io/docs/client/account#accountUpdatePrefs
  */
 async function updatePrefs(prefs: any): Promise<[AppwriteUser, AppwriteError]> {
-    return await auth.updatePrefs(prefs).then((user: AppwriteUser) => {
-        return [user, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+  return await auth.updatePrefs(prefs).then(
+    (user: AppwriteUser) => {
+      return [user, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -238,9 +325,9 @@ async function updatePrefs(prefs: any): Promise<[AppwriteUser, AppwriteError]> {
  * @see https://appwrite.io/docs/client/account#accountDelete
  */
 async function deleteAccount(): Promise<AppwriteError> {
-    return await auth.delete().catch((err: AppwriteError) => {
-        return err;
-    });
+  return await auth.delete().catch((err: AppwriteError) => {
+    return err;
+  });
 }
 
 /**
@@ -249,10 +336,12 @@ async function deleteAccount(): Promise<AppwriteError> {
  * @returns Can return {@link AppwriteError}
  * @see https://appwrite.io/docs/client/account#accountDeleteSession
  */
-async function deleteSession(sessionId: string | 'current'): Promise<AppwriteError> {
-    return await auth.deleteSession(sessionId).catch((err: AppwriteError) => {
-        return err;
-    });
+async function deleteSession(
+  sessionId: string | 'current'
+): Promise<AppwriteError> {
+  return await auth.deleteSession(sessionId).catch((err: AppwriteError) => {
+    return err;
+  });
 }
 
 /**
@@ -261,9 +350,9 @@ async function deleteSession(sessionId: string | 'current'): Promise<AppwriteErr
  * @see https://appwrite.io/docs/client/account#accountDeleteSessions
  */
 async function deleteSessions(): Promise<AppwriteError> {
-    return await auth.deleteSessions().catch((err: AppwriteError) => {
-        return err;
-    })
+  return await auth.deleteSessions().catch((err: AppwriteError) => {
+    return err;
+  });
 }
 
 /**
@@ -273,12 +362,18 @@ async function deleteSessions(): Promise<AppwriteError> {
  * @returns [{@link AppwriteToken}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountCreateRecovery
  */
-async function createRecovery(email: string, url: string): Promise<[AppwriteToken, AppwriteError]> {
-    return await auth.createRecovery(email, url).then((token: AppwriteToken) => {
-        return [token, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    })
+async function createRecovery(
+  email: string,
+  url: string
+): Promise<[AppwriteToken, AppwriteError]> {
+  return await auth.createRecovery(email, url).then(
+    (token: AppwriteToken) => {
+      return [token, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -292,12 +387,22 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
  * @returns [{@link AppwriteToken}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountUpdateRecovery
  */
-async function updateRecovery(userId: string, secret: string, password: string, passwordAgain: string): Promise<[AppwriteToken, AppwriteError]> {
-    return await auth.updateRecovery(userId, secret, password, passwordAgain).then((token: AppwriteToken) => {
+async function updateRecovery(
+  userId: string,
+  secret: string,
+  password: string,
+  passwordAgain: string
+): Promise<[AppwriteToken, AppwriteError]> {
+  return await auth
+    .updateRecovery(userId, secret, password, passwordAgain)
+    .then(
+      (token: AppwriteToken) => {
         return [token, null];
-    }, (err: AppwriteError) => {
+      },
+      (err: AppwriteError) => {
         return [null, err];
-    });
+      }
+    );
 }
 
 /**
@@ -308,12 +413,17 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
  * @returns [{@link AppwriteToken}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account#accountCreateVerification
  */
-async function createEmailVerification(url: string): Promise<[AppwriteToken, AppwriteError]> {
-    return await auth.createVerification(url).then((token: AppwriteToken) => {
-        return [token, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function createEmailVerification(
+  url: string
+): Promise<[AppwriteToken, AppwriteError]> {
+  return await auth.createVerification(url).then(
+    (token: AppwriteToken) => {
+      return [token, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -323,37 +433,42 @@ async function createEmailVerification(url: string): Promise<[AppwriteToken, App
  * @returns [{@link AppwriteToken}, {@link AppwriteError}]
  * @see https://appwrite.io/docs/client/account?sdk=web-default#accountUpdateVerification
  */
-async function updateEmailVerification(userId:string, secret: string): Promise<[AppwriteToken, AppwriteError]> {
-    return await auth.updateVerification(userId, secret).then((token: AppwriteToken) => {
-        return [token, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+async function updateEmailVerification(
+  userId: string,
+  secret: string
+): Promise<[AppwriteToken, AppwriteError]> {
+  return await auth.updateVerification(userId, secret).then(
+    (token: AppwriteToken) => {
+      return [token, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
-
 
 export {
-    createAccount,
-    createSession,
-    createOAuthSession,
-    createMagicURLSession,
-    updateMagicURLSession,
-    createAnonymousSession,
-    createJWT,
-    getAccount,
-    getPrefs,
-    getSessions,
-    getLogs,
-    getSession,
-    updateName,
-    updatePassword,
-    updateEmail,
-    updatePrefs,
-    deleteAccount,
-    deleteSession,
-    deleteSessions,
-    createRecovery,
-    updateRecovery,
-    createEmailVerification,
-    updateEmailVerification
-}
+  createAccount,
+  createSession,
+  createOAuthSession,
+  createMagicURLSession,
+  updateMagicURLSession,
+  createAnonymousSession,
+  createJWT,
+  getAccount,
+  getPrefs,
+  getSessions,
+  getLogs,
+  getSession,
+  updateName,
+  updatePassword,
+  updateEmail,
+  updatePrefs,
+  deleteAccount,
+  deleteSession,
+  deleteSessions,
+  createRecovery,
+  updateRecovery,
+  createEmailVerification,
+  updateEmailVerification,
+};
