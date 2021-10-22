@@ -1,0 +1,10 @@
+# Ignore artifacts:
+bin/
+**/.idea
+**/.github
+**/node_modules
+package.json
+CONTRIBUTING.md
+README.md
+.prettierrc.json
+tsconfig.json
