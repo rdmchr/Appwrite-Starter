@@ -5,7 +5,9 @@
   "bin": "bin/cli.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node bin/cli.js"
+    "start": "npm run build && node bin/cli.js",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
   "repository": {
     "type": "git",
