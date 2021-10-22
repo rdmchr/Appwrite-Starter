@@ -1,10 +1,10 @@
 name: Build
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["prettier"]
-    types:
-      - completed
+  pull_request:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
