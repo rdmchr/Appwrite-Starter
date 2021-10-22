@@ -29,5 +29,13 @@
     "@types/inquirer": "^8.1.3",
     "@types/node": "^16.11.1",
     "typescript": "^4.4.4"
-  }
+  },
+  "keywords": [
+    "starter",
+    "template",
+    "vue",
+    "typescript",
+    "appwrite",
+    "boilerplate"
+  ]
 }
