@@ -1,8 +1,8 @@
 import * as fs from 'fs/promises';
-import {join, relative, resolve, dirname} from 'path';
-import {compile} from 'handlebars';
+import { join, relative, resolve, dirname } from 'path';
+import { compile } from 'handlebars';
 import isUtf8 from './isUTF8';
-import {moustacheData} from './interfaces';
+import { moustacheData } from './interfaces';
 
 /**
  * formats a text using handlebars
@@ -43,7 +43,6 @@ async function prepareDir(filePath: string) {
     } catch {
         throw new Error(`Cannot create directory with the path ${target}`);
     }
-
 }
 
 /**
@@ -68,6 +67,38 @@ async function copy(projectDir: string, templateDir: string, moustaches: moustac
     }
 }
 
+/**
+ * Copies the selected Appwrite services to the template
+ * @param projectDir the selected template
+ * @param services the selected Appwrite services
+ * @param moustaches the moustache data
+ */
+async function copyAppwrite(projectDir: string, services: string[], moustaches: moustacheData) {
+    const appwriteDir = join(__dirname, '..', projectDir, 'src', 'appwrite');
+    const appwriteServicesDir = join(__dirname, '..', 'appwrite');
+    await fs.mkdir(appwriteDir, {recursive: true});
+    // Add interfaces
+    let interfaces: string[] = []
+    for (let serviceIndex in services) {
+        const service = services[serviceIndex];
+
+        interfaces = [...interfaces, `${service}Interfaces`]
+    }
+    // also add Appwrite base service
+    services = [...services, ...interfaces, 'appwrite', 'appwriteInterfaces'];
+    for (let serviceIndex in services) {
+        const service = services[serviceIndex];
+
+        let source = await fs.readFile(join(appwriteServicesDir, `${service}.ts`));
+        let target = source;
+        if (isUtf8(source)) {
+            target = Buffer.from(format(source, moustaches));
+        }
+        await fs.writeFile(join(appwriteDir, `${service}.ts`), target, 'utf-8');
+    }
+}
+
 export {
     copy,
+    copyAppwrite,
 };

@@ -4,7 +4,7 @@ import {cyan, green} from 'chalk';
 import inquirer from 'inquirer';
 import {Inquiry, moustacheData} from './interfaces';
 import * as fs from 'fs';
-import {copy} from './templateEngine';
+import {copy, copyAppwrite} from './templateEngine';
 import gitUsername from 'git-username';
 const { resolve } = require('path')
 
@@ -35,6 +35,15 @@ async function run() {
             },
         },
         {
+            type: 'checkbox',
+            name: 'services',
+            message: 'Which Appwrite services do you intent to use',
+            choices: ['Account', 'Database', 'Functions'],
+            filter(val: string[]): string[] {
+                return val.map((choice: string) => choice.toLowerCase());
+            }
+        },
+        {
             type: 'input',
             name: 'endpoint',
             message: 'Appwrite endpoint?',
@@ -47,8 +56,8 @@ async function run() {
     ];
 
     // walk user through questions
-    const {name, framework, endpoint, project, setup} = await inquirer.prompt(inquiries).then((answers) => {
-        return answers
+    const {name, framework, endpoint, project, setup, services} = await inquirer.prompt(inquiries).then((answers) => {
+        return answers;
     });
 
     const templateRoot = resolve(__dirname, '..', 'templates')
@@ -71,6 +80,9 @@ async function run() {
 
     // copy template into directory
     await copy(projectDir, templateDir, moustacheData);
+
+    // copy appwrite services into directory
+    await copyAppwrite(projectDir, services, moustacheData);
 
     //print success text
     const text = `
