@@ -1,17 +1,14 @@
 import {Question} from 'inquirer';
 
 interface Inquiry extends Question {
-    choices?: string[]
+  choices?: string[];
 }
 
 interface moustacheData {
-    projectName: string,
-    author: string,
-    appwriteEndpoint: string,
-    appwriteProject: string
+  projectName: string;
+  author: string;
+  appwriteEndpoint: string;
+  appwriteProject: string;
 }
 
-export {
-    Inquiry,
-    moustacheData
-}
+export {Inquiry, moustacheData};
