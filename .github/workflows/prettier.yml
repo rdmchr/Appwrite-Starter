@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  build:
+  pretier:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
