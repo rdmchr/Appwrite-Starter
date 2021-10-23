@@ -38,7 +38,7 @@ async function run() {
       type: 'checkbox',
       name: 'services',
       message: 'Which Appwrite services do you intent to use',
-      choices: ['Account', 'Database', 'Functions'],
+      choices: ['Account', 'Database', 'Functions', 'Teams', 'Storage', 'Localization'],
       filter(val: string[]): string[] {
         return val.map((choice: string) => choice.toLowerCase());
       },
@@ -56,11 +56,9 @@ async function run() {
   ];
 
   // walk user through questions
-  const {name, framework, endpoint, project, setup, services} = await inquirer
-    .prompt(inquiries)
-    .then((answers) => {
-      return answers;
-    });
+  const {name, framework, endpoint, project, setup, services} = await inquirer.prompt(inquiries).then((answers) => {
+    return answers;
+  });
 
   const templateRoot = resolve(__dirname, '..', 'templates');
 
