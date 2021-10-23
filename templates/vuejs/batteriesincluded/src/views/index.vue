@@ -4,9 +4,7 @@
   </div>
   <div>
     <p class="text-lg ml-2">\{{ counter }}</p>
-    <button @click="add" class="border-black border rounded-lg px-2 py-1">
-      +1
-    </button>
+    <button @click="add" class="border-black border rounded-lg px-2 py-1">+1</button>
   </div>
 </template>
 

@@ -14,4 +14,6 @@ interface AppwritePermissions {
   read?: string[];
 }
 
-export {AppwriteError, AppwritePermissions};
+type AppwriteOrderType = 'ASC' | 'DESC';
+
+export {AppwriteError, AppwritePermissions, AppwriteOrderType};

@@ -24,17 +24,9 @@ async function createDocument(
   parentDocument?: string,
   parentProperty?: string,
   parentPropertyType?: string
-): Promise<[AppwriteDocument, AppwriteError]> {
+): Promise<[AppwriteDocument | null, AppwriteError | null]> {
   return await db
-    .createDocument(
-      collectionId,
-      data,
-      read,
-      write,
-      parentDocument,
-      parentProperty,
-      parentPropertyType
-    )
+    .createDocument(collectionId, data, read, write, parentDocument, parentProperty, parentPropertyType)
     .then(
       (doc: AppwriteDocument) => {
         return [doc, null];
@@ -67,26 +59,15 @@ async function listDocuments(
   orderType?: string,
   orderCast?: string,
   search?: string
-): Promise<[AppwriteDocumentList, AppwriteError]> {
-  return await db
-    .listDocuments(
-      collectionId,
-      filters,
-      limit,
-      offset,
-      orderField,
-      orderType,
-      orderCast,
-      search
-    )
-    .then(
-      (docs: AppwriteDocumentList) => {
-        return [docs, null];
-      },
-      (err: AppwriteError) => {
-        return [null, err];
-      }
-    );
+): Promise<[AppwriteDocumentList | null, AppwriteError | null]> {
+  return await db.listDocuments(collectionId, filters, limit, offset, orderField, orderType, orderCast, search).then(
+    (docs: AppwriteDocumentList) => {
+      return [docs, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -99,7 +80,7 @@ async function listDocuments(
 async function getDocument(
   collectionId: string,
   documentId: string
-): Promise<[AppwriteDocument, AppwriteError]> {
+): Promise<[AppwriteDocument | null, AppwriteError | null]> {
   return await db.getDocument(collectionId, documentId).then(
     (doc: AppwriteDocument) => {
       return [doc, null];
@@ -126,17 +107,15 @@ async function updateDocument(
   data: string,
   read?: string[],
   write?: string[]
-): Promise<[AppwriteDocument, AppwriteError]> {
-  return await db
-    .updateDocument(collectionId, documentId, data, read, write)
-    .then(
-      (doc: AppwriteDocument) => {
-        return [doc, null];
-      },
-      (err: AppwriteError) => {
-        return [null, err];
-      }
-    );
+): Promise<[AppwriteDocument | null, AppwriteError | null]> {
+  return await db.updateDocument(collectionId, documentId, data, read, write).then(
+    (doc: AppwriteDocument) => {
+      return [doc, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -146,21 +125,15 @@ async function updateDocument(
  * @returns Can return {@link AppwriteError}
  * @see https://appwrite.io/docs/client/database#databaseUpdateDocument
  */
-async function deleteDocument(
-  collectionId: string,
-  documentId: string
-): Promise<AppwriteError> {
-  return await db
-    .deleteDocument(collectionId, documentId)
-    .catch((err: AppwriteError) => {
+async function deleteDocument(collectionId: string, documentId: string): Promise<AppwriteError | null> {
+  return await db.deleteDocument(collectionId, documentId).then(
+    () => {
+      return null;
+    },
+    (err: AppwriteError) => {
       return err;
-    });
+    }
+  );
 }
 
-export {
-  createDocument,
-  listDocuments,
-  getDocument,
-  updateDocument,
-  deleteDocument,
-};
+export {createDocument, listDocuments, getDocument, updateDocument, deleteDocument};

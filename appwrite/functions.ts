@@ -14,7 +14,7 @@ const func = appwrite.functions;
 async function createExecution(
   functionId: string,
   data?: string
-): Promise<[AppwriteExecution, AppwriteError]> {
+): Promise<[AppwriteExecution | null, AppwriteError | null]> {
   return await func.createExecution(functionId, data).then(
     (exec: AppwriteExecution) => {
       return [exec, null];
@@ -41,17 +41,15 @@ async function listExecutions(
   limit?: number,
   offset?: number,
   orderType?: 'ASC' | 'DESC'
-): Promise<[AppwriteExecutionList, AppwriteError]> {
-  return await func
-    .listExecutions(functionId, search, limit, offset, orderType)
-    .then(
-      (execs: AppwriteExecutionList) => {
-        return [execs, null];
-      },
-      (err: AppwriteError) => {
-        return [null, err];
-      }
-    );
+): Promise<[AppwriteExecutionList | null, AppwriteError | null]> {
+  return await func.listExecutions(functionId, search, limit, offset, orderType).then(
+    (execs: AppwriteExecutionList) => {
+      return [execs, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -64,7 +62,7 @@ async function listExecutions(
 async function getExecution(
   functionId: string,
   executionId: string
-): Promise<[AppwriteExecution, AppwriteError]> {
+): Promise<[AppwriteExecution | null, AppwriteError | null]> {
   return await func.getExecution(functionId, executionId).then(
     (exec: AppwriteExecution) => {
       return [exec, null];
