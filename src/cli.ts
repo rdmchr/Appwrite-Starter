@@ -38,7 +38,7 @@ async function run() {
       type: 'checkbox',
       name: 'services',
       message: 'Which Appwrite services do you intent to use',
-      choices: ['Account', 'Database', 'Functions', 'Teams', 'Storage', 'Localization'],
+      choices: ['Account', 'Database', 'Functions', 'Teams', 'Storage', 'Localization', 'Avatars'],
       filter(val: string[]): string[] {
         return val.map((choice: string) => choice.toLowerCase());
       },
