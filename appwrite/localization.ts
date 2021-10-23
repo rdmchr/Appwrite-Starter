@@ -1,5 +1,12 @@
 import {appwrite} from './appwrite';
-import {AppwriteContinentsList, AppwriteCountryList, AppwriteCurrenciesList, AppwriteLanguagesList, AppwriteLocale, AppwritePhonesList} from './localizationInterfaces';
+import {
+  AppwriteContinentsList,
+  AppwriteCountryList,
+  AppwriteCurrenciesList,
+  AppwriteLanguagesList,
+  AppwriteLocale,
+  AppwritePhonesList,
+} from './localizationInterfaces';
 import {AppwriteError} from './appwriteInterfaces';
 
 const local = appwrite.locale;
@@ -12,11 +19,14 @@ const local = appwrite.locale;
  * @see https://appwrite.io/docs/client/locale#localeGet
  */
 async function get(): Promise<[AppwriteLocale | null, AppwriteError | null]> {
-    return await local.get().then((locale: AppwriteLocale) => {
-        return [locale, null]
-    }, (err) => {
-        return [null, err];
-    });
+  return await local.get().then(
+    (locale: AppwriteLocale) => {
+      return [locale, null];
+    },
+    (err) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -25,11 +35,14 @@ async function get(): Promise<[AppwriteLocale | null, AppwriteError | null]> {
  * @see https://appwrite.io/docs/client/locale#localeGetCountries
  */
 async function getCountries(): Promise<[AppwriteCountryList | null, AppwriteError | null]> {
-    return await local.getCountries().then((countries: AppwriteCountryList) => {
-        return [countries, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    })
+  return await local.getCountries().then(
+    (countries: AppwriteCountryList) => {
+      return [countries, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -38,11 +51,14 @@ async function getCountries(): Promise<[AppwriteCountryList | null, AppwriteErro
  * @see https://appwrite.io/docs/client/locale#localeGetCountriesEU
  */
 async function getCountriesEU(): Promise<[AppwriteCountryList | null, AppwriteError | null]> {
-    return await local.getCountriesEU().then((countries: AppwriteCountryList) => {
-        return [countries, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    })
+  return await local.getCountriesEU().then(
+    (countries: AppwriteCountryList) => {
+      return [countries, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -51,11 +67,14 @@ async function getCountriesEU(): Promise<[AppwriteCountryList | null, AppwriteEr
  * @see https://appwrite.io/docs/client/locale#localeGetCountriesPhones
  */
 async function getCountriesPhones(): Promise<[AppwritePhonesList | null, AppwriteError | null]> {
-    return await local.getCountriesPhones().then((phones: AppwritePhonesList) => {
-        return [phones, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    })
+  return await local.getCountriesPhones().then(
+    (phones: AppwritePhonesList) => {
+      return [phones, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -64,11 +83,14 @@ async function getCountriesPhones(): Promise<[AppwritePhonesList | null, Appwrit
  * @see https://appwrite.io/docs/client/locale#localeGetContinents
  */
 async function getContinents(): Promise<[AppwriteContinentsList | null, AppwriteError | null]> {
-    return await local.getContinents().then((continents: AppwriteContinentsList) => {
-        return [continents, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    })
+  return await local.getContinents().then(
+    (continents: AppwriteContinentsList) => {
+      return [continents, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -77,11 +99,14 @@ async function getContinents(): Promise<[AppwriteContinentsList | null, Appwrite
  * @see https://appwrite.io/docs/client/locale#localeGetCurrencies
  */
 async function getCurrencies(): Promise<[AppwriteCurrenciesList | null, AppwriteError | null]> {
-    return await local.getCurrencies().then((currencies: AppwriteCurrenciesList) => {
-        return [currencies, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+  return await local.getCurrencies().then(
+    (currencies: AppwriteCurrenciesList) => {
+      return [currencies, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
 /**
@@ -90,19 +115,14 @@ async function getCurrencies(): Promise<[AppwriteCurrenciesList | null, Appwrite
  * @see https://appwrite.io/docs/client/locale#localeGetLanguages
  */
 async function getLanguages(): Promise<[AppwriteLanguagesList | null, AppwriteError | null]> {
-    return await local.getLanguages().then((languages: AppwriteLanguagesList) => {
-        return [languages, null];
-    }, (err: AppwriteError) => {
-        return [null, err];
-    });
+  return await local.getLanguages().then(
+    (languages: AppwriteLanguagesList) => {
+      return [languages, null];
+    },
+    (err: AppwriteError) => {
+      return [null, err];
+    }
+  );
 }
 
-export {
-    getLanguages,
-    getCurrencies,
-    getContinents,
-    getCountriesPhones,
-    getCountriesEU,
-    getCountries,
-    get
-}
+export {getLanguages, getCurrencies, getContinents, getCountriesPhones, getCountriesEU, getCountries, get};
