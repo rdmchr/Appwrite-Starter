@@ -55,6 +55,10 @@ async function run() {
     },
   ];
 
+  const gitUsernameV = await gitUsername;
+
+  console.log(gitUsernameV);
+
   // walk user through questions
   const {name, framework, endpoint, project, setup, services} = await inquirer.prompt(inquiries).then((answers) => {
     return answers;
@@ -66,7 +70,6 @@ async function run() {
   const templateDir = resolve(templateRoot, framework, setup);
   const moustacheData: moustacheData = {
     projectName: name,
-    author: gitUsername() ? (gitUsername() as string) : 'no-git-user-found',
     appwriteEndpoint: endpoint,
     appwriteProject: project,
   };
