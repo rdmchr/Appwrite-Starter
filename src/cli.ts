@@ -85,7 +85,9 @@ async function run() {
   await copyAppwrite(projectDir, services, moustacheData);
 
   //print success text
-  const text = `Your project has been created. Now run:\n${cyan(`cd ${name}`)}\n${cyan('npm install')}\n${cyan('npm run dev')}`;
+  const text = `Your project has been created. Now run:\n${cyan(`cd ${name}`)}\n${cyan('npm install')}\n${cyan(
+    'npm run dev'
+  )}`;
   console.log(text);
 }
 
