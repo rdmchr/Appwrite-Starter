@@ -5,6 +5,7 @@ interface Inquiry extends Question {
 }
 
 interface moustacheData {
+//this field is required please check 
   projectName: string;
   author: string;
   appwriteEndpoint: string;
