@@ -85,13 +85,8 @@ async function run() {
   await copyAppwrite(projectDir, services, moustacheData);
 
   //print success text
-  const text = `
-    Your project has been created. Now run:
-    ${cyan(`cd ${name}`)}
-    ${cyan('npm install')}
-	${cyan('npm run dev')}
-    `;
-  console.log(text); //FIXME: the text is currently unaligned
+  const text = `Your project has been created. Now run:\n${cyan(`cd ${name}`)}\n${cyan('npm install')}\n${cyan('npm run dev')}`;
+  console.log(text);
 }
 
 function isDirEmpty(dirname: string) {
