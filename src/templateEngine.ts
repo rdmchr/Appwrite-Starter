@@ -51,11 +51,7 @@ async function prepareDir(filePath: string) {
  * @param templateDir the path to the template directory
  * @param moustaches the moustache data
  */
-async function copy(
-  projectDir: string,
-  templateDir: string,
-  moustaches: moustacheData
-) {
+async function copy(projectDir: string, templateDir: string, moustaches: moustacheData) {
   const templateFiles = await goThroughDir(templateDir);
   for (const sourcePath of templateFiles) {
     const relativePath = relative(templateDir, sourcePath);
@@ -71,4 +67,35 @@ async function copy(
   }
 }
 
-export {copy};
+/**
+ * Copies the selected Appwrite services to the template
+ * @param projectDir the selected template
+ * @param services the selected Appwrite services
+ * @param moustaches the moustache data
+ */
+async function copyAppwrite(projectDir: string, services: string[], moustaches: moustacheData) {
+  const appwriteDir = join(__dirname, '..', projectDir, 'src', 'appwrite');
+  const appwriteServicesDir = join(__dirname, '..', 'appwrite');
+  await fs.mkdir(appwriteDir, {recursive: true});
+  // Add interfaces
+  let interfaces: string[] = [];
+  for (let serviceIndex in services) {
+    const service = services[serviceIndex];
+
+    interfaces = [...interfaces, `${service}Interfaces`];
+  }
+  // also add Appwrite base service
+  services = [...services, ...interfaces, 'appwrite', 'appwriteInterfaces'];
+  for (let serviceIndex in services) {
+    const service = services[serviceIndex];
+
+    let source = await fs.readFile(join(appwriteServicesDir, `${service}.ts`));
+    let target = source;
+    if (isUtf8(source)) {
+      target = Buffer.from(format(source, moustaches));
+    }
+    await fs.writeFile(join(appwriteDir, `${service}.ts`), target, 'utf-8');
+  }
+}
+
+export {copy, copyAppwrite};

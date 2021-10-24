@@ -46,8 +46,7 @@ export default function isUtf8(buf?: Buffer | Uint8Array): boolean {
     // UTF8-3 = %xE1-EC 2( UTF8-tail )
     // UTF8-3 = %xEE-EF 2( UTF8-tail )
     if (
-      ((buf[i] >= 0xe1 && buf[i] <= 0xec) ||
-        (buf[i] >= 0xee && buf[i] <= 0xef)) &&
+      ((buf[i] >= 0xe1 && buf[i] <= 0xec) || (buf[i] >= 0xee && buf[i] <= 0xef)) &&
       buf[i + 1] >> 6 === 2 &&
       buf[i + 2] >> 6 === 2
     ) {

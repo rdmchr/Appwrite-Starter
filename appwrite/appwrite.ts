@@ -9,3 +9,5 @@ const project = import.meta.env.VITE_APPWRITE_PROJECT as string;
 
 // initialize Appwrite
 appwrite.setEndpoint(endpoint).setProject(project);
+
+export {appwrite};
