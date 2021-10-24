@@ -5,7 +5,6 @@ import inquirer from 'inquirer';
 import {Inquiry, moustacheData} from './interfaces';
 import * as fs from 'fs';
 import {copy, copyAppwrite} from './templateEngine';
-import gitUsername from 'git-username';
 const {resolve} = require('path');
 
 async function run() {
@@ -66,7 +65,6 @@ async function run() {
   const templateDir = resolve(templateRoot, framework, setup);
   const moustacheData: moustacheData = {
     projectName: name,
-    author: gitUsername() ? (gitUsername() as string) : 'no-git-user-found',
     appwriteEndpoint: endpoint,
     appwriteProject: project,
   };
