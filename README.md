@@ -12,7 +12,7 @@ This initializer allows you to start creating projects with [Appwrite](https://a
 The aim of this project is to provide templates, that already contain a working Appwrite setup.
 
 ## Get started
-To get started just run the follwowing command and follow the prompts.
+To get started just run the following command and follow the prompts.
 ```bash
 npm init appwrite@latest
 ```
