@@ -81,8 +81,9 @@ async function run() {
   // copy template into directory
   await copy(projectDir, templateDir, moustacheData);
 
-  await copyAppwrite(projectDir, services, moustacheData);
   // copy appwrite services into directory
+  await copyAppwrite(projectDir, services, moustacheData);
+
   //print success text
   const text = `
     Your project has been created. Now run:
