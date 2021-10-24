@@ -7,3 +7,4 @@ CONTRIBUTING.md
 tsconfig.json
 pnpm-lock.yaml
 **/.idea
+assets/
