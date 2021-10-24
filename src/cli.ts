@@ -5,7 +5,6 @@ import inquirer from 'inquirer';
 import {Inquiry, moustacheData} from './interfaces';
 import * as fs from 'fs';
 import {copy, copyAppwrite} from './templateEngine';
-import gitUsername from 'git-username';
 const {resolve} = require('path');
 
 async function run() {
@@ -54,10 +53,6 @@ async function run() {
       message: 'Appwrite project id?',
     },
   ];
-
-  const gitUsernameV = await gitUsername;
-
-  console.log(gitUsernameV);
 
   // walk user through questions
   const {name, framework, endpoint, project, setup, services} = await inquirer.prompt(inquiries).then((answers) => {
